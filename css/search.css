@@ -1,37 +1,143 @@
-/* Navbar */
-.navbar {
-  background-color: #3f51b5 !important; /* Change navbar background color */
+#search-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
 }
 
-.navbar-brand {
-  color: #ffffff !important; /* Change navbar brand text color */
+body {
+  background: radial-gradient(
+    circle,
+    rgba(113, 105, 83, 1) 0%,
+    rgba(1, 45, 51, 1) 34%
+  );
+  background-repeat: no-repeat;
 }
 
-.navbar-nav .nav-link {
-  color: #ffffff !important; /* Change navbar links text color */
+.horizontal-line {
+  height: 1px;
+  width: 96%;
+  margin: 0 auto;
+  background: white;
 }
 
-.navbar-nav .nav-link:hover {
-  color: #ffeb3b !important; /* Change navbar links text color on hover */
+.search-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid white;
+  border-radius: 10px 10px 0 0;
+  width: 95%;
+  color: white;
+  padding: 1rem 1rem 1.5rem 1rem;
 }
 
-/* Main Content */
-.main-content {
-  background-color: #f5f5f5; /* Change main content background color */
-  padding: 30px;
-  border-radius: 10px;
+form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  line-height: 0px;
 }
 
-/* Text */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #3f51b5; /* Change heading text color */
+.src-area {
+  width: 40%;
 }
 
-p {
-  color: #333; /* Change paragraph text color */
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  background: #e9e9ed;
+}
+
+.btn-box {
+  width: 10%;
+  height: 4rem;
+  display: flex;
+  align-items: end;
+  margin-left: 1rem;
+}
+
+.src-btn {
+  width: 100%;
+  border: none;
+  padding: 0.5rem;
+  background: #4164df;
+  border-radius: 4px;
+  font-weight: 400;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.form-txt {
+  font-size: 0.9rem;
+}
+
+/* table */
+
+.container {
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.table-res {
+  width: 97%;
+}
+table {
+  width: 100%;
+}
+
+thead tr {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+}
+
+thead th {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #f1f1e6;
+  border-bottom: 1px solid white;
+}
+
+tbody tr:nth-child(odd) {
+  background: #1f2f30;
+  color: #d4cdb5;
+}
+
+tbody tr:nth-child(even) {
+  background: #2b3e3f;
+  color: #d4cdb5;
+}
+
+tbody td {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+tbody tr:hover {
+  background: #2c4d51;
+}
+
+.btn-book {
+  background: #1e8449;
+  padding: 0.5rem;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-book:hover {
+  background: #1e8449b3;
+  color: white;
+  cursor: pointer;
 }

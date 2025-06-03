@@ -28,8 +28,7 @@ try {
     foreach ($table as $appointment) {
         $totalEarning += $appointment['cost'] * 0.1;
     }
-
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     echo 'Error: ' . $e->getMessage();
 }
 
@@ -48,7 +47,7 @@ require('header.php');
                         <label for="username" class="font-weight-bold">Username:</label>
                         <input type="text" readonly class="form-control" id="username" value="<?php echo $user['name']; ?>">
                     </div>
-                                        <div class="form-group d-flex flex-column">
+                    <div class="form-group d-flex flex-column">
                         <label for="total_doctors" class="font-weight-bold">Total Registered Doctor</label>
                         <input type="text" readonly class="form-control" id="total_doctors" value="<?php echo $docnumber; ?>">
                     </div>
@@ -73,8 +72,8 @@ require('header.php');
                                         <td><?php echo date('j F, Y', strtotime($appointment['appointment_time'])); ?></td>
                                         <td><?php echo date('j F, Y', strtotime($appointment['date'])); ?></td>
                                         <td><?php echo $appointment['user_name']; ?></td>
-                                        <td><?php echo ($appointment['cost']*1); ?></td>
-                                        <td><?php echo ($appointment['cost']*.1); ?></td>
+                                        <td><?php echo ($appointment['cost'] * 1); ?></td>
+                                        <td><?php echo ($appointment['cost'] * .1); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                                 <tr>

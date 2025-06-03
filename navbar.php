@@ -1,40 +1,43 @@
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">TeleDoc</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="search.php">Search</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.php">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact</a>
-                    </li>
-                    <?php if(isset($_SESSION['username'])): ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="profile.php">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Logout (<?php echo $_SESSION['username']; ?>)</a>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="login.php">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="register.php">Register</a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
+<head>
+    <link rel="stylesheet" href="css/navbar.style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
+</head>
+
+<body>
+
+    <div class="nav-bar">
+        <div class="nav-left-menu">
+            <input type="checkbox" id="check" />
+            <label for="check" class="menu-label">
+                <i class="fa-solid fa-bars" id="menu-btn"></i>
+                <i class="fa-solid fa-x" id="menu-cancel"></i>
+            </label>
+            <div class="nav-logo-x">
+                <p>Appointify</p>
             </div>
+            <ul class="nav-menu-pages">
+                <li><a href="index.php">home</a></li>
+                <li><a href="search.php">doctors</a></li>
+                <li><a href="about.php">about</a></li>
+                <li><a href="contact.php">contact</a></li>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li><a href="profile.php">profile</a></li>
+                    <li><a href="logout.php">logout (<?php echo $_SESSION['username']; ?>)</a></li>
+                <?php else: ?>
+                    <li><a href="contact.php">contact</a></li>
+                <?php endif; ?>
+            </ul>
         </div>
-    </nav>
+        <?php if (isset($_SESSION['username'])): ?>
+            <div class="nav-right-menu">
+                <button class="sign-in-btn sign-btn-hover" onclick="location.href='profile.php'" style="padding: 0.6rem 0.6rem;"> Profile</button>
+                <button class="sign-in-btn get-btn" onclick="location.href='logout.php'" style="padding: 0.6rem 0.6rem;">Logout (<?php echo $_SESSION['username']; ?>)</button>
+            </div>
+        <?php else: ?>
+            <div class="nav-right-menu">
+                <button class="sign-in-btn sign-btn-hover" onclick="location.href='login.php'">Login</button>
+                <button class="sign-in-btn get-btn" onclick="location.href='register.php'">Register</button>
+            </div>
+        <?php endif; ?>
+    </div>
+</body>

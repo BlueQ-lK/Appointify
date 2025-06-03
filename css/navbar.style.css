@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav-bar {
+  display: flex;
+  padding: 0 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  background: #012d33;
+  user-select: none;
+}
+
+.nav-left-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu-pages {
+  display: flex;
+}
+
+.nav-menu-pages li {
+  list-style: none;
+  margin-left: 1.3rem;
+}
+
+.nav-menu-pages li a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: white;
+  padding: 0.3rem 0.5rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.nav-menu-pages li a:hover {
+  background: white;
+  color: black;
+}
+
+.nav-menu-pages li:nth-last-child(1) {
+  display: none;
+}
+
+.nav-logo-x p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-right: 1.4rem;
+  color: white;
+}
+
+.sign-in-btn {
+  padding: 0.2rem 0.4rem;
+  border-radius: 7px;
+  background: transparent;
+  border: 1px solid white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+}
+
+.get-btn {
+  background: white;
+  margin-left: 0.7rem;
+  color: black;
+}
+
+.get-btn:hover,
+.sign-btn-hover:hover {
+  opacity: 0.6;
+}
+
+.res-menu-bar,
+#menu-btn,
+#menu-cancel,
+#check {
+  display: none;
+}

@@ -2,7 +2,7 @@
 session_start();
 require('connection.php');
 
-if(isset($_POST['login'])){
+if (isset($_POST['login'])) {
     $_SESSION['validate'] = false;
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -11,18 +11,18 @@ if(isset($_POST['login'])){
     $p->bindValue(':u', $username);
     $p->execute();
     $user = $p->fetch(PDO::FETCH_ASSOC);
-    
+
     if ($user) {
         $storedPassword = $user['pass'];
-        
+
         if ($password === $storedPassword) {
             $_SESSION['username'] = $username;
-            $_SESSION['user_id']=$user['id'];
+            $_SESSION['user_id'] = $user['id'];
             $_SESSION['validate'] = true;
             echo '<script>alert("You have been logged in!");</script>';
             header('Location: index.php');
             exit;
-        } else {  
+        } else {
             $error_message = "Password mismatch!";
         }
     } else {
@@ -33,60 +33,145 @@ if(isset($_POST['login'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - TeleDoc</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login</title>
     <!-- Custom CSS -->
     <style>
-        /* Navbar */
-        .navbar {
-            background-color: #3f51b5 !important; /* Change navbar background color */
+        body {
+            margin: 0;
+            font-family: 'poppins', sans-serif;
+            background: radial-gradient(circle,
+                    rgba(113, 105, 83, 1) 0%,
+                    rgba(1, 45, 51, 1) 34%);
+            height: 100vh;
+            color: #e8e6d2;
+            padding: 0;
+            overflow: hidden;
         }
 
-        .navbar-brand {
-            color: #ffffff !important; /* Change navbar brand text color */
+        .container {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: auto;
         }
 
-        .navbar-nav .nav-link {
-            color: #ffffff !important; /* Change navbar links text color */
+        h1 {
+            color: #f5f5e8;
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
         }
 
-        .navbar-nav .nav-link:hover {
-            color: #ffeb3b !important; /* Change navbar links text color on hover */
+        .alert {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
         }
 
-        /* Main Content */
-        .main-content {
-            background-color: #f5f5f5; /* Change main content background color */
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 30px;
+        .form-label {
+            font-weight: 600;
+            color: #d4cdb5;
         }
 
-        /* Text */
-        h1, h2, h3, h4, h5, h6 {
-            color: #3f51b5; /* Change heading text color */
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #f1f1e6;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            background-color: #1a4f57;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #227b88;
         }
 
         p {
-            color: #333; /* Change paragraph text color */
+            color: #d4cdb5;
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        a {
+            color: #6cb2eb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .background-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        input.form-control,
+        button.btn {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            /* Ensures padding doesn't break width */
+            margin-bottom: 1.5rem;
+        }
+
+        .horizontal-line {
+            height: 1px;
+            width: 96%;
+            margin: 0 auto;
+            background: white;
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
-<?php
-require "navbar.php";
-?>
+    <?php
+    require "navbar.php";
+    ?>
     <!-- Main Content -->
+    <div class="horizontal-line"></div>
     <div class="container mt-5 main-content">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <h1>Login to TeleDoc</h1>
-                <?php if(isset($error_message)): ?>
+                <h1>Login to Appointify</h1>
+                <?php if (isset($error_message)): ?>
                     <div class="alert alert-danger" role="alert">
                         <?php echo $error_message; ?>
                     </div>
@@ -112,4 +197,5 @@ require "navbar.php";
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

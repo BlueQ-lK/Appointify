@@ -24,10 +24,9 @@ try {
     // Calculate total earning
     $totalEarning = 0;
     while ($user_details = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $totalEarning += ($user_details['cost']*.9);
+        $totalEarning += ($user_details['cost'] * .9);
     }
-
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     echo 'Error: ' . $e->getMessage();
 }
 
@@ -39,125 +38,176 @@ $appstmt->execute();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Custom styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle, rgba(113, 105, 83, 1) 0%, rgba(1, 45, 51, 1) 34%);
+            color: #fff;
+        }
+
+        .container {
+            padding-top: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
         .card {
-            margin-top: 50px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
         }
 
         .card-header {
-            background-color: #8ecae6; /* Changed to light blue */
-            color: white;
-            border-radius: 10px 10px 0 0;
+            padding: 0.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fdfdfd;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+            color: #ccc;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: #fff;
+            padding: 0.75rem;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .form-control:read-only {
+            cursor: not-allowed;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        thead th {
+            background-color: rgba(0, 60, 70, 0.6);
+            padding: 0.8rem;
+            color: #fff;
+        }
+
+        tbody td {
+            padding: 0.8rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #eee;
+        }
+
+        .table-bordered td,
+        .table-bordered th {
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .card-footer {
-            background-color: #f8f9fa;
-            border-top: none;
-            border-radius: 0 0 10px 10px;
+            background: rgba(255, 255, 255, 0.06);
+            text-align: center;
+            padding: 1rem;
         }
 
-        .btn {
-            border-radius: 20px;
-            padding: 8px 20px;
-            font-weight: bold;
+        .btn-danger {
+            background-color: #c0392b;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        /* Dark mode */
-        body.dark-mode {
-            background-color: #343a40; /* Dark background color */
-            color: #fff; /* Light text color */
-        }
-
-        .dark-mode .card-header {
-            background-color: #212529; /* Dark header background color */
-        }
-
-        .dark-mode .card-footer {
-            background-color: #343a40; /* Dark footer background color */
+        .btn-danger:hover {
+            background-color: #e74c3c;
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header text-center">
-                    <h3>Profile</h3>
-                </div>
-                <div class="card-body">
-                    <div class="form-group d-flex flex-column">
-                        <label for="username" class="font-weight-bold">Username:</label>
-                        <input type="text" readonly class="form-control" id="username" value="<?php echo $user['Name']; ?>">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3>Profile</h3>
                     </div>
-                    <div class="form-group d-flex flex-column">
-                        <label for="email" class="font-weight-bold">Email:</label>
-                        <input type="email" readonly class="form-control" id="email" value="<?php echo $user['Email']; ?>">
-                    </div>
-                    <!-- Table to display appointment details -->
-                    <div class="table-responsive mt-4">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Patient Name</th>
-                                    <th>Appointment Time</th>
-                                    <th>Date</th>
-                                    <th>Earning</th>
-                                    <!-- <th>Action</th> New column for action buttons -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                $stmt->execute(); // Re-execute the query to fetch all rows again
-                                while ($user_details = $stmt->fetch(PDO::FETCH_ASSOC)): 
-                                ?>
+                    <div class="card-body">
+                        <div class="form-group d-flex flex-column">
+                            <label for="username" class="font-weight-bold">Username:</label>
+                            <input type="text" readonly class="form-control" id="username" value="<?php echo $user['Name']; ?>">
+                        </div>
+                        <div class="form-group d-flex flex-column">
+                            <label for="email" class="font-weight-bold">Email:</label>
+                            <input type="email" readonly class="form-control" id="email" value="<?php echo $user['Email']; ?>">
+                        </div>
+                        <!-- Table to display appointment details -->
+                        <div class="table-responsive mt-4">
+                            <table class="table table-bordered">
+                                <thead>
                                     <tr>
-                                        <td><?php echo $user_details['name']; ?></td>
-                                        <td><?php echo date('j F, Y', strtotime($user_details['appointment_time'])); ?></td>
-                                        <td><?php echo date('j F, Y', strtotime($user_details['date'])); ?></td>
-                                        <td><?php echo ($user_details['cost']*.9); ?></td>
+                                        <th>Patient Name</th>
+                                        <th>Appointment Time</th>
+                                        <th>Date</th>
+                                        <th>Earning</th>
+                                        <!-- <th>Action</th> New column for action buttons -->
                                     </tr>
-                                <?php endwhile; ?>
-                                <!-- Display total earning row -->
-                                <tr>
-                                    <td colspan="3" class="text-right"><strong>Total Earning:</strong></td>
-                                    <td><?php echo $totalEarning; ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $stmt->execute(); // Re-execute the query to fetch all rows again
+                                    while ($user_details = $stmt->fetch(PDO::FETCH_ASSOC)):
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $user_details['name']; ?></td>
+                                            <td><?php echo date('j F, Y', strtotime($user_details['appointment_time'])); ?></td>
+                                            <td><?php echo date('j F, Y', strtotime($user_details['date'])); ?></td>
+                                            <td><?php echo ($user_details['cost'] * .9); ?></td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                    <!-- Display total earning row -->
+                                    <tr>
+                                        <td colspan="3" class="text-right"><strong>Total Earning:</strong></td>
+                                        <td><?php echo $totalEarning; ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="doctor_logout.php" class="btn btn-danger">Logout</a>
+                    <div class="card-footer text-center">
+                        <a href="doctor_logout.php" class="btn btn-danger">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Dark mode toggle button -->
-<div style="position: fixed; top: 20px; right: 20px;">
-    <button id="darkModeToggle" class="btn btn-secondary">Dark Mode</button>
-    <!-- <div class="mt-2"> -->
-        <!-- <a href="index.php" class="btn btn-primary d-block mb-2">Home</a>
-        <a href="search.php" class="btn btn-success d-block">Search</a> -->
-    <!-- </div> -->
-</div>
-
-<script>
-    // Dark mode toggle functionality
-    document.getElementById('darkModeToggle').addEventListener('click', function() {
-        document.body.classList.toggle('dark-mode');
-    });
-</script>
 </body>
+
 </html>

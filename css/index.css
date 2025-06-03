@@ -1,19 +1,61 @@
-/* Custom CSS for hover effect */
-.navbar-nav li a:hover {
-  color: #fff !important;
-  background-color: #0d6efd !important;
+.container {
+  width: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(113, 105, 83, 1) 0%,
+    rgba(1, 45, 51, 1) 34%
+  );
 }
-/* Additional styling for index.php */
-.jumbotron {
-  background-color: #f8f9fa;
-  padding: 80px 20px;
-  margin-top: 30px;
-  border-radius: 15px;
+
+/* horizontal line */
+.horizontal-line {
+  height: 1px;
+  width: 96%;
+  margin: 0 auto;
+  background: white;
 }
-.jumbotron h1 {
-  font-weight: bold;
-  color: #0d6efd;
+
+.hero-container {
+  display: flex;
+  padding: 8rem 7rem;
 }
-.jumbotron p {
-  color: #495057;
+
+/* home page */
+.main-left-item p:nth-child(1) {
+  color: #00ffe5;
+  margin-bottom: 1rem;
+}
+
+.main-left-item p:nth-child(2) {
+  font-family: "Overlock SC", serif;
+  font-size: 3rem;
+  font-weight: 600;
+  width: 40%;
+  line-height: 50px;
+}
+
+.main-left-item p:nth-child(3) {
+  margin-top: 1rem;
+  width: 70%;
+  line-height: 30px;
+}
+
+.main-book-btn-box {
+  width: 70%;
+  margin: 2rem auto 0 auto;
+}
+
+.main-book-btn {
+  padding: 0.6rem 1rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.main-book-btn i {
+  margin-left: 0.3rem;
+}
+
+.main-left-item p {
+  color: white;
 }
